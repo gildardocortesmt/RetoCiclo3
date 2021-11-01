@@ -21,7 +21,7 @@ public class Reservation{
     private Date startDate;
     private Date devolutionDate;
     private String status = "created";
-    private Integer score;
+    
 
     @ManyToOne
     @JoinColumn(name="id")
@@ -32,6 +32,8 @@ public class Reservation{
     @JoinColumn(name="idClient")
     @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
+
+    private Integer score;
 
     public Integer getIdReservation() {
         return idReservation;
@@ -65,14 +67,6 @@ public class Reservation{
         this.status = status;
     }
 
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
     public Costume getCostume() {
         return costume;
     }
@@ -89,6 +83,14 @@ public class Reservation{
         this.client = client;
     }
 
-    // private String score;
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+    
+    
 
 }

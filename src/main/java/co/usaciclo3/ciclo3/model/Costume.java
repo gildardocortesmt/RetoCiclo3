@@ -21,11 +21,15 @@ public class Costume implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String  name;
+    private String name;
     private String brand;
     private Integer year;
     private String description;
     
+    @ManyToOne
+    @JoinColumn(name="idCategory")
+    @JsonIgnoreProperties("costumes")
+    private Category category;
     
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
     @JsonIgnoreProperties({"costume", "client"})
@@ -34,11 +38,6 @@ public class Costume implements Serializable {
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
     @JsonIgnoreProperties({"costume", "client"})
     private List<Reservation> reservations;
-
-    @ManyToOne
-    @JoinColumn(name="idCategory")
-    @JsonIgnoreProperties("costumes")
-    private Category category;
 
     public Integer getId() {
         return id;
@@ -64,6 +63,14 @@ public class Costume implements Serializable {
         this.brand = brand;
     }
 
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -72,12 +79,12 @@ public class Costume implements Serializable {
         this.description = description;
     }
 
-    public Integer getYear() {
-        return year;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public List<Message> getMessages() {
@@ -96,13 +103,7 @@ public class Costume implements Serializable {
         this.reservations = reservations;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+    
 
     
     
