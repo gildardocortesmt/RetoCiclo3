@@ -1,9 +1,9 @@
 package co.usaciclo3.ciclo3.controller;
 
-import java.util.Calendar;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,8 +42,8 @@ public class ReservationController {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(@RequestBody Reservation p){
-        Date today=Calendar.getInstance().getTime();
-        p.setDevolutionDate(today);
+        // Date today=Calendar.getInstance().getTime();
+        // p.setDevolutionDate(today);
         return reservationService.save(p);
     }
     
@@ -74,5 +74,5 @@ public class ReservationController {
         return reservationService.getTopClients();
     }
 
-    
+
 }
